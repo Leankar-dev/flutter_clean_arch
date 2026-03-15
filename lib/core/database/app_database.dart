@@ -5,7 +5,7 @@ import 'package:flutter_clean_arch/core/database/tables/habts_table.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class ApDatabase {
+class AppDatabase {
   static Database? _database;
 
   static Future<Database> get instance async {
