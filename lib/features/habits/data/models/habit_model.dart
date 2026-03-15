@@ -1,4 +1,5 @@
 import 'package:flutter_clean_arch/core/database/tables/habts_table.dart';
+import 'package:flutter_clean_arch/features/habits/domain/entities/habit.dart';
 
 // modelo de dados para representar um hábito, com os campos id, title, createdAt e description (representa uma tabela no banco de dados)
 
@@ -33,5 +34,23 @@ class HabitModel {
       habitCreatedAtColumn: createdAt.toIso8601String(),
       habitDescriptionColumn: description,
     };
+  }
+
+  Habit toEntity() {
+    return Habit(
+      id: id,
+      title: title,
+      createAt: createdAt,
+      description: description,
+    );
+  }
+
+  factory HabitModel.fromEntity(Habit habit) {
+    return HabitModel(
+      id: habit.id,
+      title: habit.title,
+      createdAt: habit.createAt,
+      description: habit.description,
+    );
   }
 }
