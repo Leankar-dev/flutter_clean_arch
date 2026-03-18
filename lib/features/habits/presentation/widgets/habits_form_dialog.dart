@@ -14,6 +14,12 @@ class _HabitsFormDialogState extends State<HabitsFormDialog> {
   final formKey = GlobalKey<FormState>();
   final habitsCubit = sl<HabitsCubit>();
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Future<void> _submit() async {
     if (!formKey.currentState!.validate()) return;
 
