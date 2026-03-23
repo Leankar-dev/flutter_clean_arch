@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_arch/core/di/injector_container.dart';
 import 'package:flutter_clean_arch/features/habits/presentation/cubit/habits_cubit.dart';
 import 'package:flutter_clean_arch/features/habits/presentation/cubit/habits_state.dart';
+import 'package:flutter_clean_arch/features/habits/presentation/widgets/empty_habit_view_widget.dart';
+import 'package:flutter_clean_arch/features/habits/presentation/widgets/error_habit_view_widget.dart';
 import 'package:flutter_clean_arch/features/habits/presentation/widgets/habits_form_dialog.dart';
 import 'package:flutter_clean_arch/features/habits/presentation/widgets/list_habits_widget.dart';
+import 'package:flutter_clean_arch/features/habits/presentation/widgets/loading_habit_view_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,13 +33,16 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           // verificar o estado do cubit
           if (state is HabitsLoadingState) {
-            return const Center(child: CircularProgressIndicator());
+            return const LoadingHabitViewWidget();
           }
           if (state is HabitsLoadedState) {
+            if (state.habits.isEmpty) {
+              return const EmptyHabitViewWidget();
+            }
             return ListHabitsWidget(habits: state.habits);
           }
           if (state is HabitsErrorState) {
-            return Center(child: Text('Error: ${state.erroMessage}'));
+            return ErrorHabitViewWidget(error: state.erroMessage);
           }
           return const SizedBox.shrink();
         },
