@@ -66,12 +66,12 @@ class HabitsCubit extends Cubit<HabitsState> {
   }
 
   // metodo para deletar um hábito
-  Future<void> deleteHabit(String id) async {
-    try {
-      await _deleteHabitUseCase(id);
-      await getHabits();
-    } catch (e) {
-      emit(HabitsErrorState(e.toString()));
-    }
-  }
+  // Future<void> deleteHabit(String id) async {
+  //   try {
+  //     await _deleteHabitUseCase(id);
+  //     await getHabits();
+  //   } catch (e) {
+  //     emit(HabitsErrorState(e.toString()));
+  //   }
+  // }
 }

@@ -28,6 +28,8 @@ Future<void> initDependencies() async {
   sl.registerLazySingleton(() => InsertHabitUseCase(sl()));
 
   sl.registerLazySingleton(() => HabitsCubit(sl(), sl(), sl(), sl()));
+
+  sl.registerLazySingleton(() => DeleteHabitUseCase(sl()));
 }
 
 
